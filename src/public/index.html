@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Calendarr</title>
+    <link rel="stylesheet" href="/styles.css?v=homarr-13" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <main>
+      <header>
+        <div class="brand">
+          <div class="brand-mark">C</div>
+          <div><h1>Calendarr</h1><p>Your release horizon</p></div>
+        </div>
+        <div class="controls">
+          <button id="todayButton">Today</button>
+          <label class="view-select">
+            <span>View</span>
+            <select id="viewSelect" aria-label="Calendar view">
+              <option value="day">1 Day</option>
+              <option value="three">3 Days</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+            </select>
+          </label>
+          <div class="display-controls">
+            <div class="display-switcher" aria-label="Event display">
+              <button data-display="names" aria-pressed="false">Names</button>
+              <button data-display="dots" aria-pressed="false">Dots</button>
+            </div>
+            <button id="colorButton" class="color-button" aria-label="Customize colors" aria-expanded="false">
+              <i class="color-preview sonarr"></i><i class="color-preview radarr"></i><span class="color-label">Colors</span>
+            </button>
+            <div id="colorPanel" class="color-panel" hidden>
+              <div class="color-targets">
+                <button class="color-target" data-color-service="sonarr"><i id="sonarrColorPreview"></i><span>TV episodes</span></button>
+                <button class="color-target" data-color-service="radarr"><i id="radarrColorPreview"></i><span>Movies</span></button>
+              </div>
+              <div class="color-palette" aria-label="Color presets">
+                <button data-color="#55d6be" style="--preset:#55d6be" aria-label="Teal"></button>
+                <button data-color="#34d399" style="--preset:#34d399" aria-label="Green"></button>
+                <button data-color="#38bdf8" style="--preset:#38bdf8" aria-label="Blue"></button>
+                <button data-color="#818cf8" style="--preset:#818cf8" aria-label="Indigo"></button>
+                <button data-color="#c084fc" style="--preset:#c084fc" aria-label="Purple"></button>
+                <button data-color="#f472b6" style="--preset:#f472b6" aria-label="Pink"></button>
+                <button data-color="#fb7185" style="--preset:#fb7185" aria-label="Red"></button>
+                <button data-color="#fb923c" style="--preset:#fb923c" aria-label="Orange"></button>
+                <button data-color="#ffbe5c" style="--preset:#ffbe5c" aria-label="Amber"></button>
+                <button data-color="#facc15" style="--preset:#facc15" aria-label="Yellow"></button>
+              </div>
+              <label class="hex-color"><span>Hex</span><input id="colorHex" type="text" maxlength="7" spellcheck="false" /></label>
+              <div class="color-actions"><button id="resetColors">Reset</button><button id="doneColors" class="done-colors">Done</button></div>
+            </div>
+          </div>
+          <div class="month-controls">
+            <button id="previousButton" aria-label="Previous month">‹</button>
+            <h2 id="monthTitle"></h2>
+            <button id="nextButton" aria-label="Next month">›</button>
+          </div>
+          <button id="refreshButton" class="icon-button" aria-label="Refresh">↻</button>
+        </div>
+        <button id="toolbarToggle" class="toolbar-toggle" aria-label="Hide toolbar" aria-expanded="true">⌃</button>
+      </header>
+
+      <section class="legend">
+        <span><i class="dot sonarr"></i>TV episodes</span>
+        <span><i class="dot radarr"></i>Movies</span>
+        <span id="status" class="status">Loading releases…</span>
+      </section>
+
+      <section class="calendar-shell">
+        <div id="weekdays" class="weekdays"></div>
+        <div id="calendar" class="calendar" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <div id="details" class="modal" hidden>
+      <button id="detailBackdrop" class="backdrop" aria-label="Close details"></button>
+      <article class="detail-card">
+        <button id="closeDetails" class="close" aria-label="Close">×</button>
+        <div id="detailPoster" class="detail-poster"></div>
+        <div class="detail-copy">
+          <span id="detailType" class="pill"></span>
+          <h2 id="detailTitle"></h2>
+          <p id="detailSubtitle"></p>
+          <p id="detailRelease" class="detail-release"></p>
+          <p id="detailOverview"></p>
+          <button id="overviewToggle" class="overview-toggle" hidden>Show more</button>
+          <a id="detailSource" class="source-link" target="_blank" rel="noreferrer" hidden></a>
+        </div>
+      </article>
+    </div>
+
+    <div id="dayDetails" class="modal" hidden>
+      <button id="dayBackdrop" class="backdrop" aria-label="Close day releases"></button>
+      <article class="day-detail-card">
+        <button id="closeDayDetails" class="close" aria-label="Close">×</button>
+        <header class="day-detail-header">
+          <div><span class="eyebrow">Releases</span><h2 id="dayDetailTitle"></h2></div>
+          <span id="dayDetailCount" class="day-count"></span>
+        </header>
+        <div id="dayReleaseList" class="day-release-list"></div>
+      </article>
+    </div>
+    <script src="/app.js?v=homarr-13" defer></script>
+  </body>
+</html>
